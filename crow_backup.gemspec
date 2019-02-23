@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'aaron@agundy.com'
   s.files       = ["lib/github_repositories.rb", "lib/nest.rb"]
   s.executables << 'crow'
-  s.homepage    =
-    'http://rubygems.org/gems/hola'
-  s.license       = 'MIT'
+  s.homepage    = 'https://github.com/agundy/crow'
+  s.license     = 'MIT'
 end
