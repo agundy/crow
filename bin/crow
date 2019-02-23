@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'github_repositories'
+require 'nest'
+
+class CrowCLI < Thor
+  class_option :dir, :type => :string
+
+  desc "list-remote", "list available repositories to collect"
+  def list_remote
+    puts "Github"
+    GithubRepositories.new.list.each do |repo_name|
+      puts "  #{repo_name}"
+    end
+  end
+
+  desc "list", "view what's in your local nest"
+  def list
+    change_crow_directory(options[:dir])
+    Nest.new.stored
+  end
+
+  desc "backup", "backup all remote repositories"
+  def backup
+    change_crow_directory(options[:dir])
+    Nest.new.store
+  end
+
+  options :mirror => :boolean
+  desc "update", "only update existing repos"
+  def update
+    change_crow_directory(options[:dir])
+    Nest.new.update
+  end
+
+  private
+
+  def change_crow_directory(directory)
+    if directory and Dir.exists? directory
+      Dir.chdir directory
+    else
+      STDERR.puts "Warning using the current working directory"
+    end
+  end
+end
+
+CrowCLI.start(ARGV)
