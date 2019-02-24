@@ -10,4 +10,7 @@ Gem::Specification.new do |s|
   s.executables << 'crow'
   s.homepage    = 'https://github.com/agundy/crow'
   s.license     = 'MIT'
+  s.add_runtime_dependency "octokit", "~> 4.0"
+  s.add_runtime_dependency "thor"
+  s.add_runtime_dependency "git"
 end
